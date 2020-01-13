@@ -5,5 +5,6 @@ host :"localhost",
 user :"root",
 
 password:"root" ,
+
 dataBase:"mydb"
 };

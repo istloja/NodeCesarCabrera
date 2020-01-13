@@ -18,6 +18,8 @@ app.get("/hola/en", (req,res)=>{
   res.json({mensaje:"Hello World"})
 });
 
+require("./Servicios/rutas.js")(app);
+
 app.listen(1111,()=>{
   console.log("servidor iniciado");
 });
