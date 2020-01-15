@@ -1,10 +1,10 @@
 module.export={
   //ip
-host :"localhost",
+host:"localhost",
   //usuario
-user :"root",
+user:"chess94",
 
-password:"root" ,
+password:"123456789cesar" ,
 
 dataBase:"mydb"
 };

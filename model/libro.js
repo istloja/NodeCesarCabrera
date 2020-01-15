@@ -1,4 +1,4 @@
-const myql = require ("../baseconexion/bd.js");
+const mysql = require ("../baseconexion/bd.js");
 const libro = function(Libros){
   this.id_libros = Libros.id_libros;
   this.codigo_libro = Libros.codigo_libro;
@@ -10,14 +10,14 @@ const libro = function(Libros){
 };
 
 libro.obtenerTodos = result =>{
-  myql.query('Select * from Libros',(err,res)=>{
+  mysql.query('Select * from Libros',(err,res)=>{
     if (error){
         console.log (error,'error consulta');
-        result (-1,error);
+        result (null,error);
         return
       }
       console.log(res);
-      result(1,res);
+      result(null,res);
     }
   );
 };

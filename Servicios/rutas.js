@@ -1,4 +1,4 @@
 module.exports = app => {
-  const libros = require("../model/libro.js");
-  app.post("ObtenerTodos",libros.obtenerTodos);
+  const libros = require("../Controller/controlador.js");
+  app.post("/ObtenerTodos",libros.ObtenerTodos);
 };
