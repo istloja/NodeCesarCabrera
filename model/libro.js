@@ -9,16 +9,46 @@ const libro = function(Libros){
   this.editorial_id_editorial = Libros.editorial_id_editorial;
 };
 
-libro.obtenerTodos = result =>{
-  mysql.query('Select * from Libros',(err,res)=>{
-    if (error){
-        console.log (error,'error consulta');
-        result (null,error);
+libro.ObtenerTodos = result =>{
+  mysql.query('Select * from libros',(err,res)=>{
+    if (err){
+        console.log (err,'error consulta');
+        result (null,err);
         return
       }
       console.log(res);
       result(null,res);
     }
   );
+};
+
+libro.crearNuevoLibro = (nuevoLibro, result) =>{
+  mysql.query("INSERT INTO libros SET ?", nuevoLibro, (error,res)=>{
+    if (error) {
+      console.log(error,'error al crear Libro');
+      result(null,error);
+      return;
+    } else {
+      result(null,res);
+    }
+  });
+};
+
+libro.editarLibro = (codigo_libro,editarLibro,result)=>{
+  mysql.query("UPDATE libros SET nombre_libro=?, prestado=?, categoria_id_categoria=?,editorial_id_editorial WHERE codigo_libro=?",
+  [editarLibro.nombre_libro,editarLibro.prestado,editarLibro.categoria_id_categoria,editarLibro.editorial_id_editorial,codigo_lib],(error,res)=>{
+
+    if (error) {
+      console.log(error,' error al crear Libro');
+      result(null,error);
+      return;
+    } else {
+      if(res.affectedRows==0){
+        result({kind:"not found"},null)
+      }else{
+         result(null,res)
+       }
+    }
+  });
 };
 module.exports=libro;
